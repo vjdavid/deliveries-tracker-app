@@ -39,20 +39,5 @@ describe ShippingTrackerService do
         expect(response.first.keys).to include(:status)
       end
     end
-
-    context 'with invalid tracking numbers' do
-      let(:tracking_numbers) do
-        [
-          {
-            tracking_number: '123',
-            carrier: 'FEDEX'
-          }
-        ]
-      end
-
-      it 'should raise an Errors::Invalid exception' do
-        expect{ service.perform(tracking_numbers) }.to raise_error
-      end
-    end
   end
 end
