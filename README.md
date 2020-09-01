@@ -1,24 +1,37 @@
-# README
+# Deliveries Tracker App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  - Return specific errors by tracking numbers
+  - Request multiple tracking_numbers at the same time
+  - Convert status codes formats between to specifc codes
 
-Things you may want to cover:
+### Installation
 
-* Ruby version
+Install the dependencies and start the server.
 
-* System dependencies
+```sh
+$ cd deliveries-tracker-app
+$ bundle install
+$ rails s
+```
+### Usage
 
-* Configuration
+The application only serves an endpoint where you can find all details of a requested tracking numbers.
 
-* Database creation
+```sh
+$ curl --location --request POST 'localhost:3000/shipping_tracks' \
+--header 'Content-Type: application/json' \
+--data-raw '{ 
+    "data": [
+      {
+        "tracking_number": "333333333333",
+        "carrier": "FEDEX"
+      }
+    ]
+}' 
+```
 
-* Database initialization
+### Todos
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Implement all supported error messages by Fedex Web Service
+- Implement timeout errors
+- Fix Travis bundle error 
